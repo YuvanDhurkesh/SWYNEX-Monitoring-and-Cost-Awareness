@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "UploadAndRemoveSiteFiles",
+      "Effect": "Allow",
+      "Action": ["s3:PutObject", "s3:DeleteObject"],
+      "Resource": "arn:aws:s3:::swynex-cloudnotes-lite-g3v99b/*"
+    },
+    {
+      "Sid": "ListSiteBucketAndCheckPublicAccess",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket", "s3:GetBucketPublicAccessBlock"],
+      "Resource": "arn:aws:s3:::swynex-cloudnotes-lite-g3v99b"
+    },
+    {
+      "Sid": "ClearTheEdgeCache",
+      "Effect": "Allow",
+      "Action": ["cloudfront:CreateInvalidation", "cloudfront:GetInvalidation"],
+      "Resource": "arn:aws:cloudfront::ACCOUNT_ID:distribution/E3U1SQME8RV8W7"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadCloudFrontMetricsAndAlarms",
+      "Effect": "Allow",
+      "Action": ["cloudwatch:GetMetricStatistics", "cloudwatch:DescribeAlarms"],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ListAccessLogs",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::swynex-cloudnotes-logs-g3v99b"
+    },
+    {
+      "Sid": "ReadAccessLogs",
+      "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::swynex-cloudnotes-logs-g3v99b/cloudfront/*"
+    }
+  ]
+}

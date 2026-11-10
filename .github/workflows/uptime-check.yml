@@ -1,0 +1,21 @@
+# Free external uptime check: runs scripts/status-check.sh from GitHub's servers every 3 hours.
+# A failed run makes GitHub email the repository owner, which acts as a second, AWS-independent alert.
+# It needs no AWS credentials, so no secrets are stored in this repository.
+name: Uptime check
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"   # every 3 hours, at 17 minutes past (avoids the busy top of the hour)
+  workflow_dispatch:          # allows a manual run from the Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  status-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the live site
+        run: bash scripts/status-check.sh
